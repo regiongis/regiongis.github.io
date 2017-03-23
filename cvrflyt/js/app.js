@@ -5,7 +5,7 @@ var data;
 
 var model = {
   getData: function(komkode) {
-    var url = "http://drayton.mapcentia.com/api/v1/sql/ballerup?q=SELECT * FROM cvr.flyttemoenster("  + komkode + ")"
+    var url = "https://drayton.mapcentia.com/api/v1/sql/ballerup?q=SELECT * FROM cvr.flyttemoenster("  + komkode + ")"
     return $.ajax({
       url: url,
       type: 'GET',
