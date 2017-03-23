@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>CVR Flyttemønster</title>
+    <link href="https://fonts.googleapis.com/css?family=Cutive+Mono" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
+    <script src="js/app.js" charset="utf-8"></script>
+
+    <link href="css/style.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+            <a class="navbar-brand" href="#">CVR Flyttemønster</a>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Vælg Kommunekode
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#" id='151' value='151'>Ballerup</a>
+                        <a class="dropdown-item" href="#" id='240' value='240'>Egedal</a>
+                        <a class="dropdown-item" href="#" id='169' value='169'>Høje Taastrup</a>
+                        <a class="dropdown-item" href="#" id='159' value='159'>Gladsaxe</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div id="jsGrid"></div>
+    <div class="modal">
+        <!-- Place at bottom of page -->
+    </div>
+    <script>
+        $(document).ready(function() {
+            contoller.init();
+
+            $body = $("body");
+
+            $(document).on({
+                ajaxStart: function() {
+                    console.log('starting');
+                    $body.addClass("loading");
+                },
+                ajaxStop: function() {
+                    console.log("Stopping");
+                    $body.removeClass("loading");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
