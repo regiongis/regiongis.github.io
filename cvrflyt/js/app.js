@@ -48,6 +48,10 @@ var view = {
       view.renderTable(159);
       $("#dropdownMenuButton").text('Gladsaxe')
     });
+    $( "#183" ).click(function() {
+      view.renderTable(183);
+      $("#dropdownMenuButton").text('Ishøj')
+    });
   },
   renderTable: function(komkode) {
     var dataArray = [];
