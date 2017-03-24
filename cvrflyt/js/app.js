@@ -1,11 +1,9 @@
 //global variable to store ajax data
 var data;
-//var komkode = 151;
-
 
 var model = {
   getData: function(komkode) {
-    var url = "http://drayton.mapcentia.com/api/v1/sql/ballerup?q=SELECT * FROM cvr.flyttemoenster("  + komkode + ")"
+    var url = "https://drayton.mapcentia.com/api/v1/sql/ballerup?q=SELECT * FROM cvr.flyttemoenster("  + komkode + ")"
     return $.ajax({
       url: url,
       type: 'GET',
@@ -58,7 +56,6 @@ var view = {
         dataArray.push(el.properties);
       });
 
-      //console.log(dataArray);
       $("#jsGrid").jsGrid({
         width: "100%",
         height: "100%",
@@ -84,9 +81,6 @@ var view = {
           { name: "belig_adresse_postdistrikt", type: "text", title: "By" },
           { name: "email_kontaktoplysning", type: "text", title: "Email" },
           { name: "livsforloeb_startdato", type: "text", title: "Startdato" }
-
-            //{ name: "Age", type: "number", width: 50 },
-            //{ name: "Address", type: "text", width: 200 }
         ]
     });
 
