@@ -52,11 +52,9 @@
 
             $(document).on({
                 ajaxStart: function() {
-                    console.log('starting');
                     $body.addClass("loading");
                 },
                 ajaxStop: function() {
-                    console.log("Stopping");
                     $body.removeClass("loading");
                 }
             });
