@@ -1,9 +1,6 @@
 tr {
   font-size: 10px;
 }
-.navbar-brand {
-  font-family: monospace;
-}
 
 /* Start by setting display:none to make this hidden.
    Then we position it in relation to the viewport window

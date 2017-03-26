@@ -12,23 +12,45 @@ var model = {
         data = response;
       }
     });
+  },
+  getKommuner: function() {
+    var url = "https://drayton.mapcentia.com/api/v1/sql/ballerup?q=select right(komkode, 3)::int komkode, komnavn from data.kommune group by komkode, komnavn order by komkode"
+    $.ajax({
+      url: url,
+      type: 'GET',
+      dataType: 'jsonp',
+      success: function(response) {
+        var kommuner = [];
+        $.each(response.features, function(index, el) {
+          kommuner.push(response.features[index].properties);
+        });
+        console.log(kommuner);
+      }
+    });
   }
 }
 
 
 var contoller = {
   init: function() {
-    view.init()
+    view.init();
+    this.jsonToCsv();
+    model.getKommuner();
   },
   data: function(komkode) {
     return model.getData(komkode)
+  },
+  jsonToCsv: function(objArray) {
+    console.log('terst');
   }
 }
+
 
 
 var view = {
   init: function() {
     this.clickDropdownItem();
+    this.ajaxLoading();
 
   },
   clickDropdownItem: function() {
@@ -53,6 +75,7 @@ var view = {
       $("#dropdownMenuButton").text('Ishøj')
     });
   },
+
   renderTable: function(komkode) {
     var dataArray = [];
     contoller.data(komkode).done(function() {
@@ -69,7 +92,7 @@ var view = {
         data: dataArray,
 
         rowClick: function(item) {
-          window.open("https://datacvr.virk.dk/data/visenhed?enhedstype=virksomhed&id=" + item.item.virksomhed_cvrnr, '_blank');
+          window.open("https://datacvr.virk.dk/data/visenhed?enhedstype=produktionsenhed&id=" + item.item.pnr, '_blank');
         },
 
         fields: [
@@ -86,10 +109,19 @@ var view = {
           { name: "email_kontaktoplysning", type: "text", title: "Email" },
           { name: "livsforloeb_startdato", type: "text", title: "Startdato" }
         ]
+      });
     });
+  },
+  ajaxLoading: function() {
+    $body = $("body");
 
-
+    $(document).on({
+        ajaxStart: function() {
+            $body.addClass("loading");
+        },
+        ajaxStop: function() {
+            $body.removeClass("loading");
+        }
     });
-
   }
 }

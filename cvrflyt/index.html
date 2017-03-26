@@ -10,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.4/papaparse.min.js" charset="utf-8"></script>
     <script src="js/app.js" charset="utf-8"></script>
 
     <link href="css/style.css" rel="stylesheet">
@@ -21,8 +22,8 @@
     <header>
         <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <a class="navbar-brand" href="#">CVR Flyttemønster</a>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -48,17 +49,6 @@
     <script>
         $(document).ready(function() {
             contoller.init();
-
-            $body = $("body");
-
-            $(document).on({
-                ajaxStart: function() {
-                    $body.addClass("loading");
-                },
-                ajaxStop: function() {
-                    $body.removeClass("loading");
-                }
-            });
         });
     </script>
 </body>
