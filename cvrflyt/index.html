@@ -10,10 +10,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.4/papaparse.min.js" charset="utf-8"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.4/papaparse.min.js" charset="utf-8"></script>
     <script src="js/app.js" charset="utf-8"></script>
 
     <link href="css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" />
     <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
 </head>
@@ -25,21 +26,19 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="#">CVR Flyttemønster</a>
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Vælg Kommune
+                      Vælg Kommune
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"></div>
+                    <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton"></div>
+                    <button type="button" id="csv" class="btn btn-secondary">Hent CSV</button>
                 </div>
             </div>
         </nav>
     </header>
     <div id="jsGrid"></div>
-    <div class="modal">
-        <!-- Place at bottom of page -->
-    </div>
+    <div class="modal"><!-- Place at bottom of page --></div>
     <script>
         $(document).ready(function() {
             contoller.init();

@@ -1,6 +1,7 @@
 //global array to store ajax data
 var data = [];
 var kommuner = [];
+var csv;
 
 var model = {
   cvr: function(komkode) {
@@ -33,6 +34,7 @@ var model = {
   }
 }
 
+
 var contoller = {
   init: function() {
     view.init();
@@ -43,12 +45,17 @@ var contoller = {
     data = [];
     model.cvr(komkode).done(function() {
       view.renderTable();
+      contoller.csv();
+      view.downloadCsv();
     });
   },
   getKommuner: function() {
     model.kommuner().done(function() {
       view.createDropdown(kommuner);
     });
+  },
+  csv: function() {
+    csv = Papa.unparse(data)
   }
 }
 
@@ -57,8 +64,8 @@ var contoller = {
 var view = {
   init: function() {
     this.ajaxLoading();
+    $("#csv").hide()
   },
-
 
   createDropdown: function(kommuner) {
     $.each(kommuner, function(index, el) {
@@ -72,12 +79,20 @@ var view = {
       });
     });
   },
-
+  downloadCsv: function() {
+    $("#csv").show();
+    $('#csv').click(function() {
+      uriContent = "text/csv;charset=utf-8," + encodeURIComponent(csv);
+      var download = $("<a>")
+              .attr("href", 'data:' + uriContent)
+              .attr("download", 'flyttemoenster.csv')
+              .appendTo("body")[0].click();
+    });
+  },
 
   renderTable: function() {
     $("#jsGrid").jsGrid({
       width: "100%",
-      height: "100%",
 
       sorting: true,
 
