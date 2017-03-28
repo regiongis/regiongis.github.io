@@ -4,6 +4,7 @@ var kommuner = [];
 var csv;
 
 var model = {
+  //get company movingpattern/changes within municipality
   cvr: function(komkode) {
     var url = "https://drayton.mapcentia.com/api/v1/sql/ballerup?q=SELECT * FROM cvr.flyttemoenster("  + komkode + ")"
     //returning ajax object for done method in controller
@@ -19,6 +20,7 @@ var model = {
       }
     });
   },
+  //get municipality code and name
   kommuner: function() {
     var url = "https://drayton.mapcentia.com/api/v1/sql/ballerup?q=select right(komkode, 3)::int komkode, komnavn from data.kommune group by komkode, komnavn order by komnavn"
     return $.ajax({
@@ -40,6 +42,7 @@ var contoller = {
     view.init();
     this.getKommuner();
   },
+
   getCvr: function(komkode) {
     //emptying array
     data = [];
@@ -49,16 +52,17 @@ var contoller = {
       view.downloadCsv();
     });
   },
+
   getKommuner: function() {
     model.kommuner().done(function() {
       view.createDropdown(kommuner);
     });
   },
+  //JSON to csv
   csv: function() {
     csv = Papa.unparse(data)
   }
 }
-
 
 
 var view = {
@@ -66,7 +70,7 @@ var view = {
     this.ajaxLoading();
     $("#csv").hide()
   },
-
+  //create dropdown items from municipality list
   createDropdown: function(kommuner) {
     $.each(kommuner, function(index, el) {
       var komkode = kommuner[index].komkode
@@ -79,17 +83,22 @@ var view = {
       });
     });
   },
+  //download selected municipality data as csv
   downloadCsv: function() {
     $("#csv").show();
+    //get selected municipality name for output csv-file
+    var currentKom = $("#dropdownMenuButton").text()
+    //create link for downloading csv
     $('#csv').click(function() {
       uriContent = "text/csv;charset=utf-8," + encodeURIComponent(csv);
       var download = $("<a>")
               .attr("href", 'data:' + uriContent)
-              .attr("download", 'flyttemoenster.csv')
+              .attr("download", currentKom + '_produktionsenhed_flyttemoenster.csv')
               .appendTo("body")[0].click();
     });
   },
 
+  //create jsqgrid table with selected cvr data
   renderTable: function() {
     $("#jsGrid").jsGrid({
       width: "100%",
@@ -119,10 +128,9 @@ var view = {
     });
   },
 
-
+  //showing loading-gif when ajax is runnung
   ajaxLoading: function() {
     $body = $("body");
-
     $(document).on({
         ajaxStart: function() {
             $body.addClass("loading");
