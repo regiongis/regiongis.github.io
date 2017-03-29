@@ -90,7 +90,7 @@ var view = {
     var currentKom = $("#dropdownMenuButton").text()
     //create link for downloading csv
     $('#csv').click(function() {
-      uriContent = "text/csv;charset=utf-8," + encodeURIComponent(csv);
+      uriContent = "text/csv;charset=utf-8,%ef%bb%bf" + encodeURIComponent(csv);
       var download = $("<a>")
               .attr("href", 'data:' + uriContent)
               .attr("download", currentKom + '_produktionsenhed_flyttemoenster.csv')
