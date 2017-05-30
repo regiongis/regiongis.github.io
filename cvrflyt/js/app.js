@@ -3,7 +3,6 @@ var data = [];
 var kommuner = [];
 var csv;
 var mymap;
-var markers = [];
 var markergroup;
 
 var model = {
@@ -53,7 +52,11 @@ var contoller = {
       view.renderTable();
       contoller.csv();
       view.downloadCsv();
+      //view logic dependent on ajax
       $("#table-map").show();
+      if ( $("#rendermap").attr('class') == "nav-link active" ) {
+        view.renderMarkers();
+      }
     });
   },
 
@@ -79,11 +82,14 @@ var view = {
     //ugly hack for rendering map in tab
     $("#rendermap").click(function() {
       setTimeout(function(){
-        view.renderMap();
+        if (mymap == undefined ) {
+          view.renderMap();
+        }
         view.renderMarkers();
       }, 200);
     });
   },
+
   //create dropdown items from municipality list
   createDropdown: function(kommuner) {
     $.each(kommuner, function(index, el) {
@@ -97,6 +103,7 @@ var view = {
       });
     });
   },
+
   //download selected municipality data as csv
   downloadCsv: function() {
     $("#csv").show();
@@ -123,10 +130,6 @@ var view = {
 
       rowClick: function(item) {
         window.open("https://datacvr.virk.dk/data/visenhed?enhedstype=produktionsenhed&id=" + item.item.pnr, '_blank');
-      },
-
-      rowDoubleClick: function(item) {
-        alert(item.item.status);
       },
 
       fields: [
@@ -158,17 +161,24 @@ var view = {
   },
 
   renderMarkers: function() {
+    //check if there is marker on the map
+    if (markergroup != undefined ) {
+      mymap.removeLayer(markergroup);
+    }
+
+    var markers = [];
+
     $.each(data, function(i, _) {
       var x = data[i].x
       var y = data[i].y
-      var marker = L.marker([Number(y), Number(x)]).addTo(mymap)
+      var marker = L.marker([Number(y), Number(x)])
         .bindPopup("<strong>" + data[i].status + '</strong></br>' + data[i].navn_tekst);
 
       markers.push(marker);
     });
-
     //Zoom to markers bounding box
-    markergroup = new L.featureGroup(markers);
+    markergroup = new L.featureGroup(markers)
+      .addTo(mymap);
     mymap.fitBounds(markergroup.getBounds());
 
   },

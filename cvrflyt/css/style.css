@@ -16,6 +16,15 @@ tr {
     text-align:center;
 }
 
+.nav-link {
+  font-family: 'Raleway', sans-serif;
+  color: black;
+}
+
+.nav-tabs {
+  padding-top: 5px;
+}
+
 .scrollable-menu {
     height: auto;
     max-height: 400px;
@@ -23,7 +32,7 @@ tr {
 }
 
 .jsgrid-grid-header, .jsgrid-grid-body {
-    overflow: hidden;;
+    overflow: scroll;
 }
 
 
@@ -41,7 +50,7 @@ tr {
     left: 0;
     height: 100%;
     width: 100%;
-    background: rgba( 255, 255, 255, .8) url('http://i.stack.imgur.com/FhHRx.gif') 50% 50% no-repeat;
+    background: rgba( 255, 255, 255, .8) url('../img/loading.gif') 50% 50% no-repeat;
 }
 
 #mapid {
