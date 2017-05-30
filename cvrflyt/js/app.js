@@ -2,11 +2,14 @@
 var data = [];
 var kommuner = [];
 var csv;
+var mymap;
+var markers = [];
+var markergroup;
 
 var model = {
   //get company movingpattern/changes within municipality
   cvr: function(komkode) {
-    var url = "https://drayton.mapcentia.com/api/v1/sql/ballerup?q=SELECT * FROM cvr.flyttemoenster("  + komkode + ")"
+    var url = "https://drayton.mapcentia.com/api/v1/sql/ballerup?q=SELECT * FROM cvr.flyttemoenster_geom("  + komkode + ")"
     //returning ajax object for done method in controller
     return $.ajax({
       url: url,
@@ -50,6 +53,7 @@ var contoller = {
       view.renderTable();
       contoller.csv();
       view.downloadCsv();
+      $("#table-map").show();
     });
   },
 
@@ -67,8 +71,18 @@ var contoller = {
 
 var view = {
   init: function() {
+
+    //this.renderMap()
     this.ajaxLoading();
-    $("#csv").hide()
+    $("#csv").hide();
+    $("#table-map").hide();
+    //ugly hack for rendering map in tab
+    $("#rendermap").click(function() {
+      setTimeout(function(){
+        view.renderMap();
+        view.renderMarkers();
+      }, 200);
+    });
   },
   //create dropdown items from municipality list
   createDropdown: function(kommuner) {
@@ -111,6 +125,10 @@ var view = {
         window.open("https://datacvr.virk.dk/data/visenhed?enhedstype=produktionsenhed&id=" + item.item.pnr, '_blank');
       },
 
+      rowDoubleClick: function(item) {
+        alert(item.item.status);
+      },
+
       fields: [
         { name: "status", type: "text", title: "Status" },
         { name: "virksomhed_cvrnr", type: "number", title: "CVR nummer" },
@@ -126,6 +144,33 @@ var view = {
         { name: "livsforloeb_startdato", type: "text", title: "Startdato" }
       ]
     });
+  },
+
+  renderMap: function() {
+    mymap = L.map('mapid').setView([55.2, 12.2], 7);
+
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+        maxZoom: 18,
+        id: 'baffioso.ie1ok8lg',
+        accessToken: 'pk.eyJ1IjoiYmFmZmlvc28iLCJhIjoiT1JTS1lIMCJ9.f5ubY91Bi42yPnTrgiq-Gw'
+    }).addTo(mymap);
+  },
+
+  renderMarkers: function() {
+    $.each(data, function(i, _) {
+      var x = data[i].x
+      var y = data[i].y
+      var marker = L.marker([Number(y), Number(x)]).addTo(mymap)
+        .bindPopup("<strong>" + data[i].status + '</strong></br>' + data[i].navn_tekst);
+
+      markers.push(marker);
+    });
+
+    //Zoom to markers bounding box
+    markergroup = new L.featureGroup(markers);
+    mymap.fitBounds(markergroup.getBounds());
+
   },
 
   //showing loading-gif when ajax is runnung

@@ -17,6 +17,11 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" />
     <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
+
+
+    <!-- Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin="" />
 </head>
 
 <body>
@@ -32,13 +37,41 @@
                       Vælg Kommune
                     </button>
                     <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton"></div>
-                    <button type="button" id="csv" class="btn btn-secondary">Hent CSV</button>
                 </div>
+                <button type="button" id="csv" class="btn btn-secondary">Hent CSV</button>
             </div>
         </nav>
     </header>
-    <div id="jsGrid"></div>
-    <div class="modal"><!-- Place at bottom of page --></div>
+    <div id="table-map">
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#tabel" role="tab">Tabel</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#kort" id="rendermap" role="tab">Kort</a>
+        </li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div class="tab-pane active" id="tabel" role="tabpanel">
+          <section id="table">
+              <div id="jsGrid"></div>
+          </section>
+        </div>
+        <div class="tab-pane" id="kort" role="tabpanel">
+          <section id="map">
+              <div id="mapid"></div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal">
+        <!-- Place at bottom of page -->
+    </div>
     <script>
         $(document).ready(function() {
             contoller.init();

@@ -6,6 +6,16 @@ tr {
     font-size: 10px;
 }
 
+.nav-tabs > li {
+    float:none;
+    display:inline-block;
+    zoom:1;
+}
+
+.nav-tabs {
+    text-align:center;
+}
+
 .scrollable-menu {
     height: auto;
     max-height: 400px;
@@ -13,7 +23,7 @@ tr {
 }
 
 .jsgrid-grid-header, .jsgrid-grid-body {
-    overflow: auto;
+    overflow: hidden;;
 }
 
 
@@ -34,6 +44,9 @@ tr {
     background: rgba( 255, 255, 255, .8) url('http://i.stack.imgur.com/FhHRx.gif') 50% 50% no-repeat;
 }
 
+#mapid {
+  height: 600px;
+}
 
 /* When the body has the loading class, we turn
    the scrollbar off with overflow:hidden */
