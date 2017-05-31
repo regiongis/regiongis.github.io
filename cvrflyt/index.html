@@ -9,7 +9,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.4/papaparse.min.js" charset="utf-8"></script>
     <script src="js/app.js" charset="utf-8"></script>
 
@@ -19,7 +18,7 @@
     <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
 
     <script src="https://use.fontawesome.com/8c15d8c064.js"></script>
-    
+
     <!-- Leaflet -->
     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin="" />
@@ -61,22 +60,17 @@
       <!-- Tab panes -->
       <div class="tab-content">
         <div class="tab-pane active" id="tabel" role="tabpanel">
-          <section id="table">
-              <div id="jsGrid"></div>
-          </section>
+          <div id="jsGrid"></div>
         </div>
         <div class="tab-pane" id="kort" role="tabpanel">
-          <section id="map">
-              <div id="mapid"></div>
-          </section>
+          <div id="mapid"></div>
         </div>
       </div>
     </div>
 
+    <!-- loading animation -->
+    <div class="modal"></div>
 
-    <div class="modal">
-        <!-- Place at bottom of page -->
-    </div>
     <script>
         $(document).ready(function() {
             contoller.init();

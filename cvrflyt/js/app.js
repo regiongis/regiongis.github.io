@@ -78,7 +78,7 @@ var view = {
     //this.renderMap()
     this.ajaxLoading();
     $("#csv").hide();
-    $("#table-map").hide();
+    //$("#table-map").hide();
     //ugly hack for rendering map in tab
     $("#rendermap").click(function() {
       setTimeout(function(){
@@ -161,6 +161,38 @@ var view = {
   },
 
   renderMarkers: function() {
+    //select constum marker from status
+    var costumIcon = function(status) {
+      function selector(status) {
+        switch (status) {
+          case 'Tilflytter':
+            return "../img/t.png";
+            break;
+          case 'Fraflytter':
+            return "../img/f.png";
+            break;
+          case 'Nystartet':
+            return "../img/n.png";
+            break;
+          case 'Ophørt':
+            return "../img/o.png";
+            break;
+          default:
+            break;
+        }
+      }
+
+      return L.icon({
+        iconUrl: selector(status),
+        shadowUrl: '../img/shadow.png',
+
+        iconAnchor: [16, 37],
+        shadowAnchor: [20, 35],
+        popupAnchor: [0, -30]
+      });
+    }
+
+
     //check if there is marker on the map
     if (markergroup != undefined ) {
       mymap.removeLayer(markergroup);
@@ -171,7 +203,7 @@ var view = {
     $.each(data, function(i, _) {
       var x = data[i].x
       var y = data[i].y
-      var marker = L.marker([Number(y), Number(x)])
+      var marker = L.marker([Number(y), Number(x)], {icon: costumIcon(data[i].status)})
         .bindPopup("<strong>" + data[i].status + '</strong></br>' + data[i].navn_tekst);
 
       markers.push(marker);
@@ -180,7 +212,6 @@ var view = {
     markergroup = new L.featureGroup(markers)
       .addTo(mymap);
     mymap.fitBounds(markergroup.getBounds());
-
   },
 
   //showing loading-gif when ajax is runnung
