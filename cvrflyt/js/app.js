@@ -8,7 +8,7 @@ var markergroup;
 var model = {
   //get company movingpattern/changes within municipality
   cvr: function(komkode) {
-    var url = "https://drayton.mapcentia.com/api/v1/sql/ballerup?q=SELECT * FROM cvr.flyttemoenster_geom("  + komkode + ")"
+    var url = "https://drayton.mapcentia.com/api/v1/sql/ballerup?q=SELECT * FROM cvr.flyttemoenster_geom2("  + komkode + ")"
     //returning ajax object for done method in controller
     return $.ajax({
       url: url,
@@ -52,11 +52,7 @@ var contoller = {
       view.renderTable();
       contoller.csv();
       view.downloadCsv();
-      //view logic dependent on ajax
-      $("#table-map").show();
-      if ( $("#rendermap").attr('class') == "nav-link active" ) {
-        view.renderMarkers();
-      }
+      view.ajaxDone();
     });
   },
 
@@ -78,8 +74,8 @@ var view = {
     //this.renderMap()
     this.ajaxLoading();
     $("#csv").hide();
-    //$("#table-map").hide();
-    //ugly hack for rendering map in tab
+    $("#table-map").hide();
+    //ugly hack for rendering map in tab pane
     $("#rendermap").click(function() {
       setTimeout(function(){
         if (mymap == undefined ) {
@@ -150,6 +146,7 @@ var view = {
   },
 
   renderMap: function() {
+    
     mymap = L.map('mapid').setView([55.2, 12.2], 7);
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -166,49 +163,45 @@ var view = {
       function selector(status) {
         switch (status) {
           case 'Tilflytter':
-            return "../img/t.png";
+            return "img/t.png";
             break;
           case 'Fraflytter':
-            return "../img/f.png";
+            return "img/f.png";
             break;
           case 'Nystartet':
-            return "../img/n.png";
+            return "img/n.png";
             break;
           case 'Ophørt':
-            return "../img/o.png";
+            return "img/o.png";
             break;
           default:
             break;
         }
       }
-
       return L.icon({
         iconUrl: selector(status),
-        shadowUrl: '../img/shadow.png',
+        shadowUrl: 'img/shadow.png',
 
         iconAnchor: [16, 37],
         shadowAnchor: [20, 35],
         popupAnchor: [0, -30]
       });
     }
-
-
-    //check if there is marker on the map
+    //check if there is markers on the map
     if (markergroup != undefined ) {
       mymap.removeLayer(markergroup);
     }
-
+    //var for markers for fitBounds method
     var markers = [];
-
+    //preparing markers and adding to array
     $.each(data, function(i, _) {
-      var x = data[i].x
-      var y = data[i].y
+      var x = data[i].x;
+      var y = data[i].y;
       var marker = L.marker([Number(y), Number(x)], {icon: costumIcon(data[i].status)})
-        .bindPopup("<strong>" + data[i].status + '</strong></br>' + data[i].navn_tekst);
-
+        .bindPopup("<strong>" + data[i].status + '</strong></br><hr>' + data[i].navn_tekst + '</br><a href="https://datacvr.virk.dk/data/visenhed?enhedstype=produktionsenhed&id=' + data[i].pnr + '" target="_blank">Se mere her</a>');
       markers.push(marker);
     });
-    //Zoom to markers bounding box
+    //add markers to map and zoom to bounding box
     markergroup = new L.featureGroup(markers)
       .addTo(mymap);
     mymap.fitBounds(markergroup.getBounds());
@@ -225,5 +218,14 @@ var view = {
             $body.removeClass("loading");
         }
     });
+  },
+
+  ajaxDone: function() {
+    $(".navbar").append('<p class="navbar-text">Opdateret: </br>' + data[0].indlaest_dato + '</p>')
+    //view logic dependent on ajax
+    $("#table-map").show();
+    if ( $("#rendermap").attr('class') == "nav-link active" ) {
+      view.renderMarkers();
+    }
   }
 }

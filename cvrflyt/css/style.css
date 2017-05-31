@@ -21,6 +21,15 @@ tr {
   color: black;
 }
 
+p.navbar-text {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0rem;
+    width: 150px;
+    line-height: 1;
+}
+
 .nav-tabs {
   padding-top: 5px;
 }
@@ -29,6 +38,10 @@ tr {
     height: auto;
     max-height: 400px;
     overflow-x: hidden;
+}
+
+#table-map {
+  height: 100%
 }
 
 .jsgrid-grid-header, .jsgrid-grid-body {
