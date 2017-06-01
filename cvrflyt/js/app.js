@@ -223,6 +223,7 @@ var view = {
   ajaxDone: function() {
     $(".navbar-text").remove();
     $(".navbar").append('<p class="navbar-text">Opdateret: </br>' + data[0].indlaest_dato + '</p>');
+    $('#csv').tooltip();
     //view logic dependent on ajax
     $("#table-map").show();
     if ( $("#rendermap").attr('class') == "nav-link active" ) {
