@@ -146,7 +146,7 @@ var view = {
   },
 
   renderMap: function() {
-    
+
     mymap = L.map('mapid').setView([55.2, 12.2], 7);
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -221,7 +221,8 @@ var view = {
   },
 
   ajaxDone: function() {
-    $(".navbar").append('<p class="navbar-text">Opdateret: </br>' + data[0].indlaest_dato + '</p>')
+    $(".navbar-text").remove();
+    $(".navbar").append('<p class="navbar-text">Opdateret: </br>' + data[0].indlaest_dato + '</p>');
     //view logic dependent on ajax
     $("#table-map").show();
     if ( $("#rendermap").attr('class') == "nav-link active" ) {
