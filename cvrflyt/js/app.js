@@ -1,9 +1,13 @@
-//global array to store ajax data
+//global variables
 var data = [];
 var kommuner = [];
 var csv;
 var mymap;
 var markergroup;
+
+////////////////////////////////////////////
+///////////////// MODEL ////////////////////
+////////////////////////////////////////////
 
 var model = {
   //get company movingpattern/changes within municipality
@@ -39,6 +43,10 @@ var model = {
 }
 
 
+///////////////////////////////////////////
+/////////////// CONTROLLER ////////////////
+///////////////////////////////////////////
+
 var contoller = {
   init: function() {
     view.init();
@@ -52,7 +60,7 @@ var contoller = {
       view.renderTable();
       contoller.csv();
       view.downloadCsv();
-      view.ajaxDone();
+      view.afterAjax();
     });
   },
 
@@ -68,22 +76,14 @@ var contoller = {
 }
 
 
+////////////////////////////////////////////
+///////////////// VIEW ////////////////////
+///////////////////////////////////////////
+
 var view = {
   init: function() {
-
-    //this.renderMap()
     this.ajaxLoading();
-    $("#csv").hide();
-    $("#table-map").hide();
-    //ugly hack for rendering map in tab pane
-    $("#rendermap").click(function() {
-      setTimeout(function(){
-        if (mymap == undefined ) {
-          view.renderMap();
-        }
-        view.renderMarkers();
-      }, 200);
-    });
+    this.beforeAjax();
   },
 
   //create dropdown items from municipality list
@@ -115,7 +115,7 @@ var view = {
     });
   },
 
-  //create jsqgrid table with selected cvr data
+  //create jsqgrid table with selected cvr data from a municipality
   renderTable: function() {
     $("#jsGrid").jsGrid({
       width: "100%",
@@ -145,6 +145,7 @@ var view = {
     });
   },
 
+  //create map
   renderMap: function() {
 
     mymap = L.map('mapid').setView([55.2, 12.2], 7);
@@ -157,8 +158,9 @@ var view = {
     }).addTo(mymap);
   },
 
+  // adding markers
   renderMarkers: function() {
-    //select constum marker from status
+    //select marker depending on status
     var costumIcon = function(status) {
       function selector(status) {
         switch (status) {
@@ -181,7 +183,6 @@ var view = {
       return L.icon({
         iconUrl: selector(status),
         shadowUrl: 'img/shadow.png',
-
         iconAnchor: [16, 37],
         shadowAnchor: [20, 35],
         popupAnchor: [0, -30]
@@ -220,7 +221,23 @@ var view = {
     });
   },
 
-  ajaxDone: function() {
+  // DOM manipulation fired when document is ready
+  beforeAjax: function(){
+    $("#csv").hide();
+    $("#table-map").hide();
+    //ugly hack for rendering map in tab pane
+    $("#rendermap").click(function() {
+      setTimeout(function(){
+        if (mymap == undefined ) {
+          view.renderMap();
+        }
+        view.renderMarkers();
+      }, 200);
+    });
+  },
+
+  // DOM manipulation fired after AJAX
+  afterAjax: function() {
     $(".navbar-text").remove();
     $(".navbar").append('<p class="navbar-text">Opdateret: </br>' + data[0].indlaest_dato + '</p>');
     $('#csv').tooltip();
