@@ -1,0 +1,34 @@
+body  {
+    background-image: url("../img/back2.jpg");
+    background-size: cover;
+    font-family: 'News Cycle', sans-serif;
+}
+#dropdownMenuLink {
+  font-family: 'News Cycle', sans-serif;
+}
+.navbar {
+  opacity: 0.5;
+  font-family: 'Fredericka the Great', cursive;
+  letter-spacing: 3px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.row {
+  padding-top: 100px;
+}
+.card-img-top {
+ width: 200px;
+ height: 200px;
+ margin-left: auto;
+ margin-right: auto;
+ display: block;
+ padding-top: 10px;
+}
+.card {
+  opacity: 0.8;
+  border-radius: 7px;
+}
+.card-title {
+  text-align: center;
+}

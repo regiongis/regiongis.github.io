@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Erhvervsinfo</title>
+    <link rel="shortcut icon" type="image/png" href="img/favicon.ico"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-faded">
+        <a class="navbar-brand" href="#"><strong>ERHVERVSINFO</strong></a>
+    </nav>
+
+
+
+    <div class="container">
+        <div class="row" id="button-grid">
+
+
+            <!--
+            KIBANA
+            -->
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="card">
+                    <img class="card-img-top" src="img/kibana.png" alt="Card image cap">
+                    <div class="card-block">
+                        <h4 class="card-title">Kibana</h4>
+                        <p class="card-text">Interaktive dashboards med mulighed for udforske og filtrere berigede data fra det centrale virksomhedsregister (CVR)</p>
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Gå til Kibana
+                      </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="http://kibana.drayton.mapcentia.com/app/kibana#/dashboard/Beriget-CVR?_g=(refreshInterval%3A(display%3AOff%2Cpause%3A!f%2Cvalue%3A0)%2Ctime%3A(from%3Anow-50y%2Cmode%3Arelative%2Cto%3Anow))" target="_blank">Beriget CVR</a>
+                                <a class="dropdown-item" href="http://kibana.drayton.mapcentia.com/app/kibana#/dashboard/LIFE-Science?_g=(refreshInterval%3A(display%3AOff%2Cpause%3A!f%2Cvalue%3A0)%2Ctime%3A(from%3Anow-50y%2Cmode%3Arelative%2Cto%3Anow))" target="_blank">LIFE-Science</a>
+                                <a class="dropdown-item" href="http://kibana.drayton.mapcentia.com/app/kibana#/dashboard/f906f820-53e1-11e7-8b2b-5fa16f89ca38?_g=(refreshInterval%3A(display%3AOff%2Cpause%3A!f%2Cvalue%3A0)%2Ctime%3A(from%3A'Wed%20Feb%2001%202017%2000%3A00%3A00%20GMT%2B0100'%2Cmode%3Aabsolute%2Cto%3A'Sun%20Jun%2018%202017%2006%3A31%3A33%20GMT%2B0200'))" target="_blank">CVR Historik</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--
+            UDTRÆK
+            -->
+
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="card">
+                    <img class="card-img-top" src="img/report.png" alt="Card image cap">
+                    <div class="card-block">
+                        <h4 class="card-title">Rapporter</h4>
+                        <p class="card-text">Specialiserede løsninger til analyser som f.eks. kan udforskes i tabeller eller på kort og med mulighed for at hente data til indlæsning i regneark</p>
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Gå til løsning
+                      </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="https://regiongis.github.io/cvrflyt/" target="_blank">Flyttemønstre</a>
+                                <a class="dropdown-item" href="#" target="_blank">Brancheforskydninger (kommer senere)</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
