@@ -2,96 +2,143 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>Erhvervsinfo</title>
-    <link rel="shortcut icon" type="image/png" href="img/favicon.ico"/>
+  <meta charset="utf-8">
+  <title>Erhvervsinfo</title>
+  <link rel="shortcut icon" type="image/png" href="img/favicon.ico" />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
+  <script src="https://use.fontawesome.com/cfc4334440.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
 
 </head>
 
 <body>
-    <nav class="navbar navbar-light bg-faded">
-        <a class="navbar-brand" href="#"><strong>ERHVERVSINFO</strong></a>
-    </nav>
+  <nav class="navbar navbar-light bg-faded">
+    <span class="navbar-brand">
+      <strong>ERHVERVSINFO</strong>
+      <a href="#" data-toggle="modal" data-target=".appinfo"><i class="fa fa-info-circle float-right" aria-hidden="true"></i></a>
+    </span>
+  </nav>
 
-    <div class="container">
-        <div class="row">
+  <div class="modal fade appinfo" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
 
+          <h4>Hvad er Erhvervsinfo?</h4>
+          <p>Portalen er udviklet i open source, der kobler åbne og frie CVR-data med andre relevante datasæt, så man brugervenligt kan se og trække oplysninger om et områdes erhvervssammensætning og branchestruktur.</p>
+          <h4>Hvad kan løsningen anvendes til?</h4>
+          <p>
+            Løsningen imødekommer en række muligheder og anvendelser:
+          </p>
+          <ul>
+            <li>Visualisering af CVR data på kort. Det giver geografisk overblik over erhvervsstrukturen i den enkelte kommune eller på tværs af kommunerne. Den geografiske dimension giver også mulighed for udtræk af data med udgangspunkt i geografisk udvælgelse.
+            </li>
+            <li> Løsningen giver adgang til viden om den enkelte virksomhed; antal medarbejdere, historik samt overblik over til- og fraflyttede virksomheder.
+            </li>
+            <li> Brugeren har mulighed for, selv at sammensætte forespørgsel i data eller anvende prædefinerede analyser til dataudtræk. Der er adgang til baggrundsdata, så brugeren kan tilgå information om de konkrete virksomheder bag; eksempelvis når der
+              skal udsendes velkomstbreve til nye virksomheder eller når der registreres udsving i tallene.
+            </li>
+            <li> På sigt er der mulighed for at berige med andre geografiske data med henblik på rumlige analyser – f.eks. Plansystem.dk og GeoDanmark. Det kan blandt andet bestemmes om virksomhederne ligger indenfor erhvervsområder, forurenet jord eller forskellige
+              bebyggelsestyper.
+            </li>
+          </ul>
+          <h4>Hvem står bag portalen?</h4>
+          <p>En række kommuner i hovedstadområdet har i fællesskab udviklet løsningen: Gladsaxe, Høje-Taastrup, Ishøj, Egedal, Ballerup, Frederikssund, Furesø, Gribskov og Rødovre. Løsningen er udarbejdet af geodatamedarbejdere med involvering af medarbejdere indenfor erhvervsområdet.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-            <!--
+  <div class="container">
+    <div class="row">
+
+      <!--
             KIBANA
             -->
-            <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="card">
-                    <img class="card-img-top" src="img/kibana.png" alt="Card image cap">
-                    <div class="card-block">
-                        <h4 class="card-title">Kibana</h4>
-                        <p class="card-text">Interaktive dashboards med mulighed for udforske og filtrere berigede data fra det centrale virksomhedsregister (CVR)</p>
-                        <div class="dropdown">
-                            <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="card">
+          <img class="card-img-top" src="img/kibana.png" alt="Card image cap">
+          <div class="card-block">
+            <h4 class="card-title">Kibana</h4>
+            <p class="card-text">Interaktive dashboards giver mulighed for at udforske og filtrere berigede data fra det centrale virksomhedsregister (CVR)</p>
+            <div class="dropdown">
+              <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Gå til Kibana
                       </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="http://kibana.drayton.mapcentia.com/app/kibana#/dashboard/Beriget-CVR?_g=(refreshInterval%3A(display%3AOff%2Cpause%3A!f%2Cvalue%3A0)%2Ctime%3A(from%3Anow-50y%2Cmode%3Arelative%2Cto%3Anow))" target="_blank">Beriget CVR</a>
-                                <a class="dropdown-item" href="http://kibana.drayton.mapcentia.com/app/kibana#/dashboard/LIFE-Science?_g=(refreshInterval%3A(display%3AOff%2Cpause%3A!f%2Cvalue%3A0)%2Ctime%3A(from%3Anow-50y%2Cmode%3Arelative%2Cto%3Anow))" target="_blank">LIFE-Science</a>
-                                <a class="dropdown-item" href="http://kibana.drayton.mapcentia.com/app/kibana#/dashboard/f906f820-53e1-11e7-8b2b-5fa16f89ca38?_g=(refreshInterval%3A(display%3AOff%2Cpause%3A!f%2Cvalue%3A0)%2Ctime%3A(from%3A'Wed%20Feb%2001%202017%2000%3A00%3A00%20GMT%2B0100'%2Cmode%3Aabsolute%2Cto%3A'Sun%20Jun%2018%202017%2006%3A31%3A33%20GMT%2B0200'))" target="_blank">CVR Historik</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="http://kibana.drayton.mapcentia.com/app/kibana#/dashboard/Beriget-CVR?_g=(refreshInterval%3A(display%3AOff%2Cpause%3A!f%2Cvalue%3A0)%2Ctime%3A(from%3Anow-50y%2Cmode%3Arelative%2Cto%3Anow))" target="_blank" data-toggle="tooltip"
+                  data-placement="right" title="CVR er beriget med oplysninger fra kommuneplaner omkring arealanvendelse">Beriget CVR</a>
+                <a class="dropdown-item" href="http://kibana.drayton.mapcentia.com/app/kibana#/dashboard/LIFE-Science?_g=(refreshInterval%3A(display%3AOff%2Cpause%3A!f%2Cvalue%3A0)%2Ctime%3A(from%3Anow-50y%2Cmode%3Arelative%2Cto%3Anow))" target="_blank" data-toggle="tooltip"
+                  data-placement="right" title="Dashboard rettet mod LIFE-Science som blandt andet indeholder virksomheder beskæftiget med lægemidler og medicoprodukter">LIFE-Science</a>
+                <a class="dropdown-item" href="http://kibana.drayton.mapcentia.com/app/kibana#/dashboard/f906f820-53e1-11e7-8b2b-5fa16f89ca38?_g=(refreshInterval%3A(display%3AOff%2Cpause%3A!f%2Cvalue%3A0)%2Ctime%3A(from%3A'Wed%20Feb%2001%202017%2000%3A00%3A00%20GMT%2B0100'%2Cmode%3Aabsolute%2Cto%3A'Sun%20Jun%2018%202017%2006%3A31%3A33%20GMT%2B0200'))"
+                  data-toggle="tooltip" data-placement="right" title="CVR med månedlig historik, så der kan dykkes ned i udviklingen af virksomheder over tid" target="_blank">CVR Historik</a>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
 
 
-            <!--
+      <!--
             UDTRÆK
             -->
 
-            <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="card">
-                    <img class="card-img-top" src="img/report.png" alt="Card image cap">
-                    <div class="card-block">
-                        <h4 class="card-title">Rapporter</h4>
-                        <p class="card-text">Specialiserede løsninger til analyser og rapporter som f.eks. kan udforskes i tabeller eller på kort</p>
-                        <div class="dropdown">
-                            <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="card">
+          <img class="card-img-top" src="img/report.png" alt="Card image cap">
+          <div class="card-block">
+            <h4 class="card-title">Rapporter</h4>
+            <p class="card-text">Specialiserede løsninger til analyser og rapporter som f.eks. kan udforskes i tabeller eller på kort</p>
+            <div class="dropdown">
+              <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Gå til løsning
                       </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="https://regiongis.github.io/cvrflyt/" target="_blank">Flyttemønstre</a>
-                                <a class="dropdown-item" href="#">Brancheforskydninger (kommer senere)</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="https://regiongis.github.io/cvrflyt/" data-toggle="tooltip" data-placement="right" title="Viser flyttemønster på kommuneniveau - hvilke virkomheder er startet, stoppet, flyttet ud eller ind af kommunen" target="_blank">Flyttemønstre</a>
+                <a class="dropdown-item" href="#">Brancheforskydninger (kommer senere)</a>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
 
 
-            <!--
+      <!--
             DOKUMENTATION
             -->
 
-            <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="card">
-                    <img class="card-img-top" src="img/wiki.png" alt="Card image cap">
-                    <div class="card-block">
-                        <h4 class="card-title">Dokumentation</h4>
-                        <p class="card-text">Vi dokumenterer løbende løsningen på en Wiki, hvor I kan finde beskrivelse af data, analyser og løsningerne</p>
-                        <a href="https://github.com/regiongis/erhvervsinfo/wiki" target="_blank" class="btn btn-primary">Gå til Wiki</a>
-                    </div>
-                </div>
-            </div>
-
-
-
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="card">
+          <img class="card-img-top" src="img/wiki.png" alt="Card image cap">
+          <div class="card-block">
+            <h4 class="card-title">Dokumentation</h4>
+            <p class="card-text">Vi dokumenterer løbende løsningen på en Wiki, hvor I kan finde beskrivelse af data, analyser og løsningerne</p>
+            <a href="https://github.com/regiongis/erhvervsinfo/wiki" target="_blank" class="btn btn-primary">Gå til Wiki</a>
+          </div>
         </div>
+      </div>
+
     </div>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+  </script>
 </body>
 
 </html>

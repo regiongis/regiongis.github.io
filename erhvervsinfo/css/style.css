@@ -3,6 +3,7 @@ body  {
     background-size: cover;
     font-family: 'News Cycle', sans-serif;
 }
+
 #dropdownMenuLink {
   font-family: 'News Cycle', sans-serif;
 }
@@ -31,4 +32,10 @@ body  {
 }
 .card-title {
   text-align: center;
+}
+
+.bottom-right{
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
