@@ -1,12 +1,13 @@
-body  {
-    background-image: url("../img/back.png");
-    background-size: cover;
-    font-family: 'News Cycle', sans-serif;
+body {
+  background-image: url("../img/back.png");
+  background-size: cover;
+  font-family: 'Nixie One', cursive;
 }
 
 #dropdownMenuLink {
-  font-family: 'News Cycle', sans-serif;
+  font-family: 'Nixie One', cursive;
 }
+
 .navbar {
   opacity: 0.5;
   font-family: 'Fredericka the Great', cursive;
@@ -18,24 +19,51 @@ body  {
 .row {
   padding-top: 100px;
 }
+
 .card-img-top {
- width: 200px;
- height: 200px;
- margin-left: auto;
- margin-right: auto;
- display: block;
- padding-top: 10px;
+  width: 200px;
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  padding-top: 10px;
 }
+
 .card {
-  opacity: 0.8;
+  opacity: 0.85;
   border-radius: 7px;
+  margin-bottom: 10px;
 }
+
 .card-title {
   text-align: center;
 }
 
-.bottom-right{
+.card-text {
+  margin-bottom: 40px;
+}
+
+.dropdown, .dropup {
+    position: absolute;
+    bottom: 20px;
+    padding-top: 20px
+}
+
+.bottom-right {
   position: fixed;
   bottom: 20px;
   right: 20px;
+}
+
+.dropdown-menu, .dropdown-item {
+  z-index: 1000;
+}
+
+@media screen and (max-width: 480px) {
+  .card {
+    margin-bottom: 100px;
+  }
+  .row {
+    padding-top: 20px;
+  }
 }
