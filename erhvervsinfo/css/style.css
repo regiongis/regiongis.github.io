@@ -35,7 +35,7 @@ body  {
 }
 
 .bottom-right{
-  position: absolute;
-  bottom: 0;
-  right: 0;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
 }
