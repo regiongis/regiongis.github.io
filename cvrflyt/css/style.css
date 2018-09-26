@@ -34,6 +34,16 @@ p.navbar-text {
   padding-top: 5px;
 }
 
+#datepicker {
+    font-family: 'Raleway', sans-serif;
+    width: 250px;
+    text-align: center; 
+}
+
+.daterangepicker {
+    font-family: 'Raleway', sans-serif;
+}
+
 .scrollable-menu {
     height: auto;
     max-height: 400px;

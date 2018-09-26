@@ -4,6 +4,9 @@ var kommuner = [];
 var csv;
 var mymap;
 var markergroup;
+var kom;
+var startDate;
+var endDate;
 
 ////////////////////////////////////////////
 ///////////////// MODEL ////////////////////
@@ -11,17 +14,18 @@ var markergroup;
 
 var model = {
   //get company movingpattern/changes within municipality
-  cvr: function(komkode) {
-    var url = "https://drayton.mapcentia.com/api/v1/sql/ballerup?q=SELECT * FROM cvr.flyttemoenster_geom2("  + komkode + ")"
+  cvr: function(komkode, startDate, endDate) {
+    var url = "https://drayton.mapcentia.com/api/v1/sql/ballerup?q=SELECT * FROM cvr.flyt_geojson("  + komkode + ",'" + startDate.format('YYYY-MM-DD') + "','" + endDate.format('YYYY-MM-DD') + "')&srs=4326"
     //returning ajax object for done method in controller
     return $.ajax({
       url: url,
       type: 'GET',
       dataType: 'jsonp',
       success: function(response) {
-        $.each(response.features, function(index, el) {
+        //console.log(response)
+        $.each(response.features, function(index, feature) {
           //add data to global data array
-          data.push(el.properties);
+          data.push(feature);
         });
       }
     });
@@ -39,6 +43,15 @@ var model = {
         });
       }
     });
+  },
+  // Set dates 
+  dates: function() {
+    var date = new Date();
+    var y = date.getFullYear();
+    var m = date.getMonth();
+    var firstDay = new Date(y, m, 1);
+    startDate = moment(firstDay).subtract(1, 'month');
+    endDate = moment(firstDay);
   }
 }
 
@@ -49,14 +62,15 @@ var model = {
 
 var contoller = {
   init: function() {
-    view.init();
     this.getKommuner();
+    model.dates();
+    view.init();
   },
 
-  getCvr: function(komkode) {
+  getCvr: function(komkode, startDate, endDate) {
     //emptying array
     data = [];
-    model.cvr(komkode).done(function() {
+    model.cvr(komkode, startDate, endDate).done(function() {
       view.renderTable();
       contoller.csv();
       view.downloadCsv();
@@ -94,10 +108,29 @@ var view = {
       $(".dropdown-menu")
         .append('<a class="dropdown-item" href="#" id="' + komkode + '">' + komnavn + "</a>")
       $("#" + komkode).click(function() {
-        contoller.getCvr(komkode);
+        kom = komkode
+        contoller.getCvr(komkode, startDate, endDate);
         $("#dropdownMenuButton").text(komnavn);
       });
     });
+  },
+
+  datePicker: function() {
+    $('input[name="daterange"]').daterangepicker({
+      startDate: startDate,
+      endDate: endDate,
+      locale: {
+        format: 'DD/M-YYYY',
+        cancelLabel: 'Annuller'
+      }
+    }, function(start, end, label) {
+      startDate = start;
+      endDate = end;
+      contoller.getCvr(kom, startDate, endDate);
+    });
+
+    $('#datepicker').val($('#datepicker').attr("placeholder"));
+
   },
 
   //download selected municipality data as csv
@@ -117,30 +150,37 @@ var view = {
 
   //create jsqgrid table with selected cvr data from a municipality
   renderTable: function() {
+
+    // Preparing data for table
+    var tabledata = []
+    $.each(data, function( _, value ) {
+      tabledata.push(value.properties);
+    });
+
     $("#jsGrid").jsGrid({
       width: "100%",
 
       sorting: true,
 
-      data: data,
+      data: tabledata,
 
       rowClick: function(item) {
-        window.open("https://datacvr.virk.dk/data/visenhed?enhedstype=produktionsenhed&id=" + item.item.pnr, '_blank');
+        window.open("https://datacvr.virk.dk/data/visenhed?enhedstype=produktionsenhed&id=" + item.item["p-nummer"], '_blank');
       },
 
       fields: [
         { name: "status", type: "text", title: "Status" },
-        { name: "virksomhed_cvrnr", type: "number", title: "CVR nummer" },
-        { name: "pnr", type: "number", title: "P nummer" },
-        { name: "hovedbranche_tekst", type: "text", title: "Branche" },
-        { name: "navn_tekst", type: "text", title: "Virksomhedsnavn" },
-        { name: "kommune_kode", type: "number", title: "Kommunekode" },
-        { name: "beliggenhedsadresse_vejnavn", type: "text", title: "Vejnavn" },
-        { name: "belig_adresse_husnummerfra", type: "text", title: "Husnummer" },
-        { name: "beliggenhedsadresse_postnr", type: "number", title: "Postnummer" },
-        { name: "belig_adresse_postdistrikt", type: "text", title: "By" },
-        { name: "email_kontaktoplysning", type: "text", title: "Email" },
-        { name: "livsforloeb_startdato", type: "text", title: "Startdato" }
+        { name: "cvr-nummer", type: "number", title: "CVR nummer" },
+        { name: "p-nummer", type: "number", title: "P nummer" },
+        { name: "hovedbranche", type: "text", title: "Branche" },
+        { name: "navn", type: "text", title: "Virksomhedsnavn" },
+        { name: "kommunekode", type: "number", title: "Kommunekode" },
+        { name: "vejnavn", type: "text", title: "Vejnavn" },
+        { name: "husnummer", type: "text", title: "Husnummer" },
+        { name: "postnummer", type: "number", title: "Postnummer" },
+        { name: "postdistrikt", type: "text", title: "By" },
+        { name: "emailadresse", type: "text", title: "Email" },
+        { name: "indlæst dato", type: "text", title: "Indlæst dato" }
       ]
     });
   },
@@ -192,20 +232,33 @@ var view = {
     if (markergroup != undefined ) {
       mymap.removeLayer(markergroup);
     }
+    
+    function onEachFeature(feature, layer) {
+      layer.bindPopup("<strong>" + feature.properties.status + '</strong></br><hr>' + feature.properties.navn + '</br><a href="https://datacvr.virk.dk/data/visenhed?enhedstype=produktionsenhed&id=' + feature.properties["p-nummer"] + '" target="_blank">Se mere her</a>');
+    }
+    
+    
     //var for markers for fitBounds method
     var markers = [];
-    //preparing markers and adding to array
-    $.each(data, function(i, _) {
-      var x = data[i].x;
-      var y = data[i].y;
-      var marker = L.marker([Number(y), Number(x)], {icon: costumIcon(data[i].status)})
-        .bindPopup("<strong>" + data[i].status + '</strong></br><hr>' + data[i].navn_tekst + '</br><a href="https://datacvr.virk.dk/data/visenhed?enhedstype=produktionsenhed&id=' + data[i].pnr + '" target="_blank">Se mere her</a>');
-      markers.push(marker);
-    });
-    //add markers to map and zoom to bounding box
-    markergroup = new L.featureGroup(markers)
-      .addTo(mymap);
-    mymap.fitBounds(markergroup.getBounds());
+
+    var geojsonLayer = L.geoJSON(data, {
+      onEachFeature: onEachFeature
+    }).addTo(mymap);
+
+    mymap.fitBounds(geojsonLayer.getBounds());
+    
+    // //preparing markers and adding to array
+    // $.each(data, function(i, _) {
+    //   var x = data[i].x;
+    //   var y = data[i].y;
+    //   var marker = L.marker([Number(y), Number(x)], {icon: costumIcon(data[i].status)})
+    //     .bindPopup("<strong>" + data[i].status + '</strong></br><hr>' + data[i].navn_tekst + '</br><a href="https://datacvr.virk.dk/data/visenhed?enhedstype=produktionsenhed&id=' + data[i].pnr + '" target="_blank">Se mere her</a>');
+    //   markers.push(marker);
+    // });
+    // //add markers to map and zoom to bounding box
+    // markergroup = new L.featureGroup(markers)
+    //   .addTo(mymap);
+    // mymap.fitBounds(markergroup.getBounds());
   },
 
   //showing loading-gif when ajax is runnung
@@ -223,6 +276,22 @@ var view = {
 
   // DOM manipulation fired when document is ready
   beforeAjax: function(){
+    this.datePicker()
+    // $(function() {
+
+    //   $('input[name="daterange"]').daterangepicker({
+    //     startDate: startDate,
+    //     endDate: endDate,
+    //     locale: {
+    //       format: 'DD/M-YYYY'
+    //     }
+    //   }, function(start, end, label) {
+    //     startDate = start;
+    //     endDate = end;
+    //     contoller.getCvr(kom, startDate, endDate);
+    //   });
+    // });
+
     $("#csv").hide();
     $("#table-map").hide();
     //ugly hack for rendering map in tab pane
@@ -239,7 +308,6 @@ var view = {
   // DOM manipulation fired after AJAX
   afterAjax: function() {
     $(".navbar-text").remove();
-    $(".navbar").append('<p class="navbar-text">Opdateret: </br>' + data[0].indlaest_dato + '</p>');
     $('#csv').tooltip();
     //view logic dependent on ajax
     $("#table-map").show();
