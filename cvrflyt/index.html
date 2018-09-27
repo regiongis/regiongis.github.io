@@ -18,11 +18,10 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin="" />
     <link href="css/style.css" rel="stylesheet">
 
-
+    <!-- Datepicker -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-
 
     <!-- Fonts and icons -->
     <script src="https://use.fontawesome.com/8c15d8c064.js"></script>
@@ -44,8 +43,7 @@
                     <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton"></div>
                 </div>
                 
-                <input id="datepicker" type="text" class="btn btn-secondary" name="daterange" placeholder="Vælg start- og slutdato" />
-
+                <input id="datepicker" type="text" class="btn btn-secondary" name="daterange" data-toggle="tooltip" data-placement="bottom" title="Som udgangspunkt vælges den 1. i indeværende måned som slut dato og så en måned tilbage" placeholder="Vælg start- og slutdato" />
 
                 <button type="button" id="csv" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Download CSV"><i class="fa fa-download" aria-hidden="true"></i></button>
             </div>

@@ -119,6 +119,7 @@ var view = {
     $('input[name="daterange"]').daterangepicker({
       startDate: startDate,
       endDate: endDate,
+      minDate: '02/01/2017',
       locale: {
         format: 'DD/M-YYYY',
         cancelLabel: 'Annuller'
@@ -236,9 +237,6 @@ var view = {
       layer.bindPopup("<strong>" + feature.properties.status + '</strong></br><hr>' + feature.properties.navn + '</br><a href="https://datacvr.virk.dk/data/visenhed?enhedstype=produktionsenhed&id=' + feature.properties["p-nummer"] + '" target="_blank">Se mere her</a>');
     }
         
-    //var for markers for fitBounds method
-    var markers = [];
-
     geojsonLayer = L.geoJSON(data, {
       onEachFeature: onEachFeature,
       pointToLayer: function(feature, latlng) {
@@ -247,19 +245,6 @@ var view = {
     }).addTo(mymap);
 
     mymap.fitBounds(geojsonLayer.getBounds());
-    
-    // //preparing markers and adding to array
-    // $.each(data, function(i, _) {
-    //   var x = data[i].x;
-    //   var y = data[i].y;
-    //   var marker = L.marker([Number(y), Number(x)], {icon: costumIcon(data[i].status)})
-    //     .bindPopup("<strong>" + data[i].status + '</strong></br><hr>' + data[i].navn_tekst + '</br><a href="https://datacvr.virk.dk/data/visenhed?enhedstype=produktionsenhed&id=' + data[i].pnr + '" target="_blank">Se mere her</a>');
-    //   markers.push(marker);
-    // });
-    // //add markers to map and zoom to bounding box
-    // markergroup = new L.featureGroup(markers)
-    //   .addTo(mymap);
-    // mymap.fitBounds(markergroup.getBounds());
   },
 
   //showing loading-gif when ajax is runnung
