@@ -239,7 +239,7 @@ var view = {
     //var for markers for fitBounds method
     var markers = [];
 
-    var geojsonLayer = L.geoJSON(data, {
+    geojsonLayer = L.geoJSON(data, {
       onEachFeature: onEachFeature,
       pointToLayer: function(feature, latlng) {
         return L.marker(latlng, {icon: costumIcon(feature.properties.status)});
