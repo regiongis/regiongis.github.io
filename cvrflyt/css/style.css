@@ -38,6 +38,9 @@ p.navbar-text {
     font-family: 'Raleway', sans-serif;
     width: 250px;
     text-align: center; 
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .daterangepicker {

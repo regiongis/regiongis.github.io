@@ -1,5 +1,6 @@
 //global variables
 var data = [];
+var tabledata = []
 var kommuner = [];
 var csv;
 var mymap;
@@ -59,7 +60,7 @@ var model = {
 /////////////// CONTROLLER ////////////////
 ///////////////////////////////////////////
 
-var contoller = {
+var controller = {
   init: function() {
     this.getKommuner();
     model.dates();
@@ -71,7 +72,7 @@ var contoller = {
     data = [];
     model.cvr(komkode, startDate, endDate).done(function() {
       view.renderTable();
-      contoller.csv();
+      controller.csv();
       view.downloadCsv();
       view.afterAjax();
     });
@@ -84,7 +85,7 @@ var contoller = {
   },
   //JSON to csv
   csv: function() {
-    csv = Papa.unparse(data)
+    csv = Papa.unparse(tabledata)
   }
 }
 
@@ -108,7 +109,7 @@ var view = {
         .append('<a class="dropdown-item" href="#" id="' + komkode + '">' + komnavn + "</a>")
       $("#" + komkode).click(function() {
         kom = komkode
-        contoller.getCvr(komkode, startDate, endDate);
+        controller.getCvr(komkode, startDate, endDate);
         $("#dropdownMenuButton").text(komnavn);
       });
     });
@@ -125,7 +126,7 @@ var view = {
     }, function(start, end, label) {
       startDate = start;
       endDate = end;
-      contoller.getCvr(kom, startDate, endDate);
+      controller.getCvr(kom, startDate, endDate);
     });
 
     $('#datepicker').val($('#datepicker').attr("placeholder"));
@@ -151,7 +152,6 @@ var view = {
   renderTable: function() {
 
     // Preparing data for table
-    var tabledata = []
     $.each(data, function( _, value ) {
       tabledata.push(value.properties);
     });
