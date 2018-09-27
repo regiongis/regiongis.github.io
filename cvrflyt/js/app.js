@@ -3,7 +3,7 @@ var data = [];
 var kommuner = [];
 var csv;
 var mymap;
-var markergroup;
+var geojsonLayer;
 var kom;
 var startDate;
 var endDate;
@@ -22,7 +22,6 @@ var model = {
       type: 'GET',
       dataType: 'jsonp',
       success: function(response) {
-        //console.log(response)
         $.each(response.features, function(index, feature) {
           //add data to global data array
           data.push(feature);
@@ -229,20 +228,22 @@ var view = {
       });
     }
     //check if there is markers on the map
-    if (markergroup != undefined ) {
-      mymap.removeLayer(markergroup);
+    if (geojsonLayer != undefined ) {
+      mymap.removeLayer(geojsonLayer);
     }
     
     function onEachFeature(feature, layer) {
       layer.bindPopup("<strong>" + feature.properties.status + '</strong></br><hr>' + feature.properties.navn + '</br><a href="https://datacvr.virk.dk/data/visenhed?enhedstype=produktionsenhed&id=' + feature.properties["p-nummer"] + '" target="_blank">Se mere her</a>');
     }
-    
-    
+        
     //var for markers for fitBounds method
     var markers = [];
 
     var geojsonLayer = L.geoJSON(data, {
-      onEachFeature: onEachFeature
+      onEachFeature: onEachFeature,
+      pointToLayer: function(feature, latlng) {
+        return L.marker(latlng, {icon: costumIcon(feature.properties.status)});
+    },
     }).addTo(mymap);
 
     mymap.fitBounds(geojsonLayer.getBounds());
@@ -277,20 +278,6 @@ var view = {
   // DOM manipulation fired when document is ready
   beforeAjax: function(){
     this.datePicker()
-    // $(function() {
-
-    //   $('input[name="daterange"]').daterangepicker({
-    //     startDate: startDate,
-    //     endDate: endDate,
-    //     locale: {
-    //       format: 'DD/M-YYYY'
-    //     }
-    //   }, function(start, end, label) {
-    //     startDate = start;
-    //     endDate = end;
-    //     contoller.getCvr(kom, startDate, endDate);
-    //   });
-    // });
 
     $("#csv").hide();
     $("#table-map").hide();
