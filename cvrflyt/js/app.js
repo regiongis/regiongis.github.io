@@ -16,7 +16,7 @@ var endDate;
 var model = {
   //get company movingpattern/changes within municipality
   cvr: function(komkode, startDate, endDate) {
-    var url = "https://drayton.mapcentia.com/api/v1/sql/ballerup?q=SELECT * FROM cvr.flyt_geojson("  + komkode + ",'" + startDate.format('YYYY-MM-DD') + "','" + endDate.format('YYYY-MM-DD') + "')&srs=4326"
+    var url = "https://drayton.mapcentia.com/api/v1/sql/ballerup?q=SELECT * FROM cvr.flyt("  + komkode + ",'" + startDate.format('YYYY-MM-DD') + "','" + endDate.format('YYYY-MM-DD') + "')&srs=4326"
     //returning ajax object for done method in controller
     return $.ajax({
       url: url,
