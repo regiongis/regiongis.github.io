@@ -151,8 +151,10 @@ var view = {
 
   //create jsqgrid table with selected cvr data from a municipality
   renderTable: function() {
+    //empty table data
+    tabledata = []
 
-    // Preparing data for table
+    // Prepare data for table
     $.each(data, function( _, value ) {
       tabledata.push(value.properties);
     });
@@ -228,7 +230,7 @@ var view = {
         popupAnchor: [0, -30]
       });
     }
-    //check if there is markers on the map
+    //check if there is markers on the map and remove
     if (geojsonLayer != undefined ) {
       mymap.removeLayer(geojsonLayer);
     }
