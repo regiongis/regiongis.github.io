@@ -34,19 +34,15 @@ p.navbar-text {
   padding-top: 5px;
 }
 
-#datepicker {
-    font-family: 'Raleway', sans-serif;
-    width: 250px;
-    text-align: center; 
-    border-radius: 5px;
-    margin-left: 10px;
-    margin-right: 10px;
+@media screen and (min-width: 576px) {
+    #datepicker {
+        font-family: 'Raleway', sans-serif;
+        width: 250px;
+        text-align: center; 
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 }
-
-.daterangepicker {
-    font-family: 'Raleway', sans-serif;
-}
-
 .scrollable-menu {
     height: auto;
     max-height: 400px;

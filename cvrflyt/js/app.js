@@ -77,7 +77,6 @@ var controller = {
       view.afterAjax();
     }).fail(function() {
       alert("Kunne ikke få fat i data");
-
     });
   },
 
