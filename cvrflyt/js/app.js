@@ -75,12 +75,17 @@ var controller = {
       controller.csv();
       view.downloadCsv();
       view.afterAjax();
+    }).fail(function() {
+      alert("Kunne ikke få fat i data");
+
     });
   },
 
   getKommuner: function() {
     model.kommuner().done(function() {
       view.createDropdown(kommuner);
+    }).fail(function() {
+      alert('Kunne ikke få fat i data')
     });
   },
   //JSON to csv
@@ -144,7 +149,7 @@ var view = {
       uriContent = "text/csv;charset=utf-8,%ef%bb%bf" + encodeURIComponent(csv);
       var download = $("<a>")
               .attr("href", 'data:' + uriContent)
-              .attr("download", currentKom + '_produktionsenhed_flyttemoenster.csv')
+              .attr("download", currentKom + '_produktionsenhed_flyttemoenster_' + startDate.format('YYYY-MM-DD') + '_til_' + endDate.format('YYYY-MM-DD') + '.csv')
               .appendTo("body")[0].click();
     });
   },
