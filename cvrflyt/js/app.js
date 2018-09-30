@@ -75,6 +75,9 @@ var controller = {
       controller.csv();
       view.downloadCsv();
       view.afterAjax();
+      if (geojsonLayer != undefined ) {
+        view.renderMarkers();
+      }
     }).fail(function() {
       alert("Kunne ikke få fat i data");
     });
