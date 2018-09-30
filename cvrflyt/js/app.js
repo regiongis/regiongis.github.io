@@ -113,11 +113,12 @@ var view = {
       var komkode = kommuner[index].komkode
       var komnavn = kommuner[index].komnavn
       $(".dropdown-menu")
-        .append('<a class="dropdown-item" href="#" id="' + komkode + '">' + komnavn + "</a>")
-      $("#" + komkode).click(function() {
+        .append('<a class="dropdown-item ' + komkode + '" href="#">' + komnavn + "</a>")
+      $("." + komkode).click(function() {
         kom = komkode
         controller.getCvr(komkode, startDate, endDate);
-        $("#dropdownMenuButton").text(komnavn);
+        $(".test").text(komnavn);
+        //$("#dropdownMenuButton1").text(komnavn);
       });
     });
   },
@@ -134,11 +135,13 @@ var view = {
     }, function(start, end, label) {
       startDate = start;
       endDate = end;
-      controller.getCvr(kom, startDate, endDate);
+      $("#datepicker-nav").val(startDate.format('DD/MM-YYYY') + ' - ' + endDate.format('DD/MM-YYYY'));
+      if (kom == undefined) {
+        alert('Du skal først vælge en kommune')
+      } else {
+        controller.getCvr(kom, startDate, endDate);
+      }
     });
-
-    $('#datepicker').val($('#datepicker').attr("placeholder"));
-
   },
 
   //download selected municipality data as csv
@@ -150,9 +153,9 @@ var view = {
     $('#csv').click(function() {
       uriContent = "text/csv;charset=utf-8,%ef%bb%bf" + encodeURIComponent(csv);
       var download = $("<a>")
-              .attr("href", 'data:' + uriContent)
-              .attr("download", currentKom + '_produktionsenhed_flyttemoenster_' + startDate.format('YYYY-MM-DD') + '_til_' + endDate.format('YYYY-MM-DD') + '.csv')
-              .appendTo("body")[0].click();
+        .attr("href", 'data:' + uriContent)
+        .attr("download", currentKom + '_produktionsenhed_flyttemoenster_' + startDate.format('YYYY-MM-DD') + '_til_' + endDate.format('YYYY-MM-DD') + '.csv')
+        .appendTo("body")[0].click();
     });
   },
 
@@ -272,6 +275,7 @@ var view = {
   // DOM manipulation fired when document is ready
   beforeAjax: function(){
     this.datePicker()
+    $('#myModal').modal('show')
 
     $("#csv").hide();
     $("#table-map").hide();

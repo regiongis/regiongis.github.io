@@ -35,7 +35,7 @@ p.navbar-text {
 }
 
 @media screen and (min-width: 576px) {
-    #datepicker {
+    .datepicker {
         font-family: 'Raleway', sans-serif;
         width: 250px;
         text-align: center; 
@@ -64,7 +64,7 @@ p.navbar-text {
    for themselves. Background we set to 80% white with
    our animation centered, and no-repeating */
 
-.modal {
+.ajax {
     display: none;
     position: fixed;
     z-index: 1000;
@@ -90,6 +90,10 @@ body.loading {
 /* Anytime the body has the loading class, our
    modal element will be visible */
 
-body.loading .modal {
+body.loading .ajax {
     display: block;
+}
+
+#myModal {
+    font-family: 'Raleway', sans-serif;
 }
