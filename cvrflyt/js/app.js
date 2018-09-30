@@ -275,7 +275,13 @@ var view = {
   // DOM manipulation fired when document is ready
   beforeAjax: function(){
     this.datePicker()
-    $('#myModal').modal('show')
+    $('#myModal').modal({
+      "show": true,
+      "backdrop": false
+    });
+    $('#modalApply').click(function() {
+      $(".navbar").slideDown();
+    });
 
     $("#csv").hide();
     $("#table-map").hide();

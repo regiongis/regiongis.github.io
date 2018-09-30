@@ -2,74 +2,82 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">    
-    
-    <title>CVR Flyttemønster</title>
-    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg==" crossorigin=""></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script> -->
-    
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.min.js"
-      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-      crossorigin="anonymous"></script>    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.4/papaparse.min.js" charset="utf-8"></script>
-    <script src="js/app.js" charset="utf-8"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" />
-    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ==" crossorigin="" />
-    <link href="css/style.css" rel="stylesheet">
+  <title>CVR Flyttemønster</title>
+  <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
+    crossorigin=""></script>
 
-    <!-- Datepicker -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 
-    <!-- Fonts and icons -->
-    <script src="https://use.fontawesome.com/8c15d8c064.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.4/papaparse.min.js" charset="utf-8"></script>
+  <script src="js/app.js" charset="utf-8"></script>
+
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" />
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
+    crossorigin="" />
+  <link href="css/style.css" rel="stylesheet">
+
+  <!-- Datepicker -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+  <!-- Fonts and icons -->
+  <script src="https://use.fontawesome.com/8c15d8c064.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
+  <header>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-sm" style="display: none">
 
-            <a class="navbar-brand" href="#">CVR Flyttemønster</a>
+      <a class="navbar-brand" href="#">CVR Flyttemønster</a>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle test" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Vælg Kommune
-                        </button>
-                        <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton"></div>
-                    </div>
-                </li>
-                <li class="nav-item">
-                  <input id="datepicker-nav" type="text" class="btn btn-secondary datepicker" name="daterange" data-toggle="tooltip" data-placement="bottom" title="Som udgangspunkt vælges den 1. i indeværende måned som slut dato og så en måned tilbage" placeholder="Vælg start- og slutdato" />
-                </li>
-                <li class="nav-item">
-                  <button type="button" id="csv" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Download CSV"><i class="fa fa-download" aria-hidden="true"></i></button>
-                </li>
-              </ul>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle test" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Vælg Kommune
+              </button>
+              <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton"></div>
             </div>
-        </nav>
-    </header>
+          </li>
+          <li class="nav-item">
+            <input id="datepicker-nav" type="text" class="btn btn-secondary datepicker" name="daterange" data-toggle="tooltip"
+              data-placement="bottom" title="Som udgangspunkt vælges den 1. i indeværende måned som slut dato og så en måned tilbage"
+              placeholder="Vælg start- og slutdato" />
+          </li>
+          <li class="nav-item">
+            <button type="button" id="csv" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Download CSV"><i
+                class="fa fa-download" aria-hidden="true"></i></button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <div class="container-fluid">
     <div id="table-map">
       <!-- Nav tabs -->
-      <ul class="nav nav-tabs" role="tablist">
+      <ul class="nav nav-tabs justify-content-center" role="tablist">
         <li class="nav-item">
           <a class="nav-link active" data-toggle="tab" href="#tabel" role="tab">
             <i class="fa fa-table" aria-hidden="true"></i>
@@ -93,49 +101,51 @@
       </div>
     </div>
 
-    <!-- Landing modal -->
-    <div id="myModal" class="modal bd-example-modal-lg" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">CVR Flyttemønster</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
+  </div>
 
-            <div class="container">
-              <div class="row">
-                <p>Se hvilke virksomheder der er startet, stoppet, til- eller fraflyttet en kommune. Vælg en kommune og den periode du ønsker at få et udtræk fra.</p>
+  <!-- Landing modal -->
+  <div id="myModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">CVR Flyttemønster</h5>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <p>Se hvilke virksomheder der er startet, stoppet, til- eller fraflyttet en kommune. Vælg en kommune og
+                den periode du ønsker at få et udtræk fra.</p>
+            </div>
+            <div class="row justify-content-sm-center">
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle test" type="button" id="dropdownMenuButton1"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Vælg Kommune
+                </button>
+                <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton"></div>
               </div>
-              <div class="row justify-content-sm-center">
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle test" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Vælg Kommune
-                  </button>
-                  <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton"></div>
-                </div>
-                <input id="datepicker-modal" type="text" class="btn btn-secondary datepicker" name="daterange" data-toggle="tooltip" data-placement="bottom" title="Som udgangspunkt vælges den 1. i indeværende måned som slut dato og så en måned tilbage" placeholder="Vælg start- og slutdato" />
-              </div>
+              <input id="datepicker-modal" type="text" class="btn btn-secondary datepicker" name="daterange"
+                data-toggle="tooltip" data-placement="bottom" title="Som udgangspunkt vælges den 1. i indeværende måned som slut dato og så en måned tilbage"
+                placeholder="Vælg start- og slutdato" />
             </div>
           </div>
+        </div>
 
-          <div class="modal-footer">
-            <button id="modalApply" type="button" class="btn btn-secondary" data-dismiss="modal">Se virksomheder</button>
-          </div>
+        <div class="modal-footer">
+          <button id="modalApply" type="button" class="btn btn-secondary" data-dismiss="modal">Se virksomheder</button>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- loading animation -->
-    <div class="ajax"></div>
+  <!-- loading animation -->
+  <div class="ajax"></div>
 
-    <script>
-        $(document).ready(function() {
-            controller.init();
-        });
-    </script>
+  <script>
+    $(document).ready(function () {
+      controller.init();
+    });
+  </script>
 </body>
 
 </html>
