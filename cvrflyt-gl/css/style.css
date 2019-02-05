@@ -1,0 +1,97 @@
+nav,
+button,
+thead {
+    font-family: 'Raleway', sans-serif;
+}
+
+tr {
+    font-size: 10px;
+}
+
+.nav-link {
+    font-family: 'Raleway', sans-serif;
+    color: black;
+}
+
+p.navbar-text {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0rem;
+    width: 150px;
+    line-height: 1;
+}
+
+.nav-tabs {
+    padding-top: 5px;
+}
+
+@media screen and (min-width: 576px) {
+    .datepicker {
+        font-family: 'Raleway', sans-serif;
+        width: 250px;
+        text-align: center;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 400px;
+    overflow-x: hidden;
+}
+
+#table-map {
+    height: 100%
+}
+
+.jsgrid-grid-header,
+.jsgrid-grid-body {
+    overflow: scroll;
+}
+
+
+/* Start by setting display:none to make this hidden.
+   Then we position it in relation to the viewport window
+   with position:fixed. Width, height, top and left speak
+   for themselves. Background we set to 80% white with
+   our animation centered, and no-repeating */
+
+.ajax {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(255, 255, 255, .8) url('../img/loading.gif') 50% 50% no-repeat;
+}
+
+#mapid {
+    height: 85vh;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+
+body.loading {
+    overflow: hidden;
+}
+
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+
+body.loading .ajax {
+    display: block;
+}
+
+#myModal {
+    font-family: 'Raleway', sans-serif;
+    background-image: url("../img/cvr.png");
+    background-repeat: no-repeat;
+    background-size: auto;
+    opacity: 0.95;
+}
